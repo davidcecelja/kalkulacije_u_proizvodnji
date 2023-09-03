@@ -22,18 +22,36 @@ public class User {
 	private String lozinka;
 	
 	@Column
-	private String potvrdaLozinke;
+	private String uloga;
+	
+	@Column
+	private String status;
+	
+	private boolean enabled;
+	
+	public enum Uloga {
+	    ADMIN,
+	    USER,
+	    SUPERVISOR
+	}
+
+	public enum StatusKorisnika {
+	    AKTIVAN,
+	    BRISAN
+	}
 
 	public User() {
 		super();
 	}
 
-	public User(long id, String email, String lozinka, String potvrdaLozinke) {
+	public User(long id, String email, String lozinka, String uloga, String status, boolean enabled) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.lozinka = lozinka;
-		this.potvrdaLozinke = potvrdaLozinke;
+		this.uloga = uloga;
+		this.status = status;
+		this.enabled = enabled;
 	}
 
 	public long getId() {
@@ -60,12 +78,28 @@ public class User {
 		this.lozinka = lozinka;
 	}
 
-	public String getPotvrdaLozinke() {
-		return potvrdaLozinke;
+	public String getUloga() {
+		return uloga;
 	}
 
-	public void setPotvrdaLozinke(String potvrdaLozinke) {
-		this.potvrdaLozinke = potvrdaLozinke;
+	public void setUloga(String uloga) {
+		this.uloga = uloga;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 }
 
