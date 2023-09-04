@@ -17,4 +17,6 @@ public interface UserService {
 	void registracijaUser(User user);
 
 	void odjavaUser();
+	
+	Iterable<User> getAllUser();
 }

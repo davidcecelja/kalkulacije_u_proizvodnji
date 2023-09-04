@@ -101,4 +101,9 @@ public class UserServiceImpl implements UserService{
 	public void odjavaUser() {
 		SecurityContextHolder.clearContext();	
 	}
+
+	@Override
+	public Iterable<User> getAllUser() {
+		return this.repository.findAll();
+	}
 }
