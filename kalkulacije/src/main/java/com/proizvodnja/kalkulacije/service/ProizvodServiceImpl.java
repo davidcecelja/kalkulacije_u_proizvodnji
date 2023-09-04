@@ -1,14 +1,21 @@
 package com.proizvodnja.kalkulacije.service;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.proizvodnja.kalkulacije.model.Proizvod;
+import com.proizvodnja.kalkulacije.repository.ProizvodRepository;
 
 @Service
 @Transactional
 public class ProizvodServiceImpl implements ProizvodService{
 
+	@Autowired
+	private ProizvodRepository proizvodRepository;
+	
 	@Override
 	public Proizvod createProizvod(Proizvod proizvod) {
 		// TODO Auto-generated method stub
@@ -23,8 +30,15 @@ public class ProizvodServiceImpl implements ProizvodService{
 
 	@Override
 	public Proizvod getProizvod(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		if(id == 0) 
+			return new Proizvod();
+		
+		Optional<Proizvod> data = this.proizvodRepository.findById(id);
+		if(data.isPresent()) {
+			return data.get();
+		} else {
+			return new Proizvod();
+		}		
 	}
 
 	@Override
@@ -35,8 +49,7 @@ public class ProizvodServiceImpl implements ProizvodService{
 
 	@Override
 	public Iterable<Proizvod> getAllProizvod() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.proizvodRepository.findAll();
 	}
 
 }
