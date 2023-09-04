@@ -5,10 +5,17 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.proizvodnja.kalkulacije.model.User;
 import com.proizvodnja.kalkulacije.service.UserService;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class UserController {
@@ -41,69 +48,74 @@ public class UserController {
 		model.addAttribute("user", trenutniUser);
 		return "pocetna_supervisor";
 	}
+	
+	@GetMapping("/novi")
+	public String newUser(Model model) {
+		User user = new User();
+		model.addAttribute("user", user);
+		return "pocetna_admin";
+	}
+	
+	@PostMapping("/novi")
+	public String dodajUser(@ModelAttribute("user") User user) {
+		service.registracijaUser(user);
+		return "redirect:/login/";
+	}
+	
+	@GetMapping("/uredi-user/{id}")
+	public ModelAndView urediUser(@PathVariable("id") long id) {
+		ModelAndView mav = new ModelAndView("uredi_user");
+		User user = service.getUser(id);
+		mav.addObject("user", user);
+		return mav;
+	}
+	
+	@PostMapping("/uredi-user")
+	public String spremiUser(@ModelAttribute("user") User user) {
+	    service.updateUser(user);
+	    return "redirect:/pocetna-admin";
+	}
+	
+	@GetMapping("/brisi-user/{id}")
+	public String brisiUser(@PathVariable(name = "id") long id) {             
+	    service.deleteUser(id);
+	    return "redirect:/pocetna-admin";
+	}
+	
+	@GetMapping("/registracija")
+	public String prikaziFormuRegistracije(Model model) {
+	    model.addAttribute("user", new User());
+	    model.addAttribute("greska", null); 
+	    return "registracija";
+	}
+	
+	@PostMapping("/registracija")
+	public String registracijaKorisnika(@Valid User user, BindingResult bindingResult, Model model) {
+	    if (bindingResult.hasErrors()) {          
+	        return "registracija";
+	    }  
+	    String email = user.getEmail();
+	    if(!email.matches("^.*@(admin\\.com|user\\.com|supervisor\\.com)$")) {
+	    	model.addAttribute("greska", "Krivo upisan email!");
+	    	return "registracija";
+	    }
+	    service.registracijaUser(user);
+	    return "redirect:/login";
+	}
+	
+	@GetMapping("/login")
+	public String prikaziFormuPrijave() {
+	    return "login";
+	}
+	
+	@GetMapping("/odjava")
+	public String odjaviUser() {
+	    service.odjavaUser();
+	    return "redirect:/login";
+	}
 }
 
-@GetMapping("/novi")
-public String noviKorisnikGet(Model model) {
-    Korisnik korisnik = new Korisnik();
-    model.addAttribute("korisnik", korisnik);
-    return "pocetna_admin";
-}
 
-@PostMapping("/novi")
-public String dodajKorisnikPost(@ModelAttribute("korisnik") Korisnik korisnik) {
-    service.registracijaKorisnika(korisnik);
-    return "redirect:/login/";
-}
 
-@GetMapping("/uredi_korisnik/{id}")
-public ModelAndView urediKorisnikGet(@PathVariable("id") long id) {
-    ModelAndView mav = new ModelAndView("uredi_korisnik");
-    Korisnik korisnik = service.getKorisnik(id);
-    mav.addObject("korisnik", korisnik);
-    return mav;
-}
 
-@PostMapping("/uredi-korisnik")
-public String spremiKorisnika(@ModelAttribute("korisnik") Korisnik korisnik) {
-    service.updateKorisnik(korisnik);
-    return "redirect:/pocetna-admin";
-}
 
-@GetMapping("/brisi_korisnik/{id}")
-public String brisiKorisnik(@PathVariable(name = "id") long id) {             
-    service.deleteKorisnik(id);
-    return "redirect:/pocetna-admin";
-}
-
-@GetMapping("/registracija")
-public String prikaziFormuRegistracije(Model model) {
-    model.addAttribute("korisnik", new Korisnik());
-    model.addAttribute("greska", null); 
-    return "registracija";
-}
-
-@PostMapping("/registracija")
-public String registracijaKorisnika(@Valid Korisnik korisnik, BindingResult bindingResult, Model model) {
-    if (bindingResult.hasErrors()) {          
-        return "registracija";
-    }  
-    String email = korisnik.getEmail();
-    if(!email.matches("^.*@(mev\\.hr|student\\.mev\\.hr|admin\\.mev\\.hr)$")) {
-    	model.addAttribute("greska", "Krivo upisan email!");
-    	return "registracija";
-    }
-    service.registracijaKorisnika(korisnik);
-    return "redirect:/login";
-}
-
-@GetMapping("/login")
-public String prikaziFormuPrijave() {
-    return "login";
-}
-
-@GetMapping("/odjava")
-public String odjavaKorisnika() {
-    service.odjavaKorisnika();
-    return "redirect:/login";
-}
