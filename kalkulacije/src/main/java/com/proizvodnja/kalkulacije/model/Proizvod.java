@@ -1,5 +1,7 @@
 package com.proizvodnja.kalkulacije.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,8 @@ public class Proizvod {
 	@Column
 	private int kolicina;
 	
+	private List<String> proizvodi;
+	
 	@ManyToOne
 	@JoinColumn()
 	private MjernaJedinica mjernaJedinica;
@@ -37,6 +41,7 @@ public class Proizvod {
 	@JoinColumn(name = "strojId", referencedColumnName = "id")
 	private Stroj stroj;
 
+	
 	public Proizvod() {
 		super();
 	}

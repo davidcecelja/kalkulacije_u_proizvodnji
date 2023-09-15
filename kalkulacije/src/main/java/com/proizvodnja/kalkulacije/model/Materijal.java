@@ -33,7 +33,7 @@ public class Materijal {
 	private long kolicina;
 	
 	@ManyToOne
-	@JoinColumn(name = "materijalTipId", referencedColumnName = "id")
+	@JoinColumn()
 	private TipMaterijala tipMaterijala;
 	
 	@ManyToOne

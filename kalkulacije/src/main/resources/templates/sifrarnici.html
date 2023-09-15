@@ -21,8 +21,16 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/kalkulacija}">Kalkulacija</a>
                 </li>                
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/sifrarnici}">Šifrarnici</a>                   
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="sifrarniciDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:href="@{/sifrarnici}">Šifrarnici</a>
+                    <div class="dropdown-menu" aria-labelledby="sifrarniciDropdown">
+        				<a class="dropdown-item" href="#">GP-1001</a>
+        				<a class="dropdown-item" href="#">PP-1001</a>
+        				<a class="dropdown-item" href="#">PP-1002</a>
+        				<a class="dropdown-item" href="#">GP-1002</a>
+        				<a class="dropdown-item" href="#">PP-1003</a>
+        				<a class="dropdown-item" href="#">PP-1004</a>
+    				</div>                   
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/administracija}">Administracija</a>                   
@@ -36,13 +44,12 @@
         <table class="table table-striped">
             <thead class="thead-light">
                 <tr>
-                    <th>Šifra materijala</th>
-                    <th>Opis materijala</th>
-                    <th>Mjerna jedinica</th>
-                    <th>Tip materijala</th>
-                    <th>Jedinična cijena</th>
-                    <th>Valuta</th>
-                    <th>Jedinična količina</th>
+                    <th>Naziv predavanja</th>
+                    <th>Opis predavanja</th>
+                    <th>Početak predavanja</th>
+                    <th>Završetak predavanja</th>
+                    <th>Status predavanja</th>
+                    <th>Akcije</th>
                 </tr>
             </thead>
             <tbody>

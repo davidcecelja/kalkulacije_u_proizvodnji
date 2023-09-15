@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.proizvodnja.kalkulacije.exception.ResourceNotFoundException;
 import com.proizvodnja.kalkulacije.model.Stroj;
 import com.proizvodnja.kalkulacije.repository.StrojRepository;
 
@@ -23,9 +24,18 @@ public class StrojServiceImpl implements StrojService{
 	}
 
 	@Override
-	public Stroj updateStroj(Stroj stroj) {
-		// TODO Auto-generated method stub
-		return null;
+	public Stroj updateStroj(Stroj stroj) throws ResourceNotFoundException {
+		
+		Optional<Stroj> data = strojRepository.findById(stroj.getId());
+		if(data.isPresent()) {
+			Stroj strojUpdate = data.get();
+			strojUpdate.setCijenaRadaStroja(stroj.getCijenaRadaStroja());
+			strojUpdate.setCijenaRadaRadnika(stroj.getCijenaRadaRadnika());
+			strojRepository.save(strojUpdate);
+			return strojUpdate;
+		} else {
+			throw new ResourceNotFoundException("Ne postoje podaci za: " + stroj.getId());
+		}	
 	}
 
 	@Override
