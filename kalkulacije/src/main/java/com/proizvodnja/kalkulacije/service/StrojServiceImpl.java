@@ -1,5 +1,6 @@
 package com.proizvodnja.kalkulacije.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,12 @@ public class StrojServiceImpl implements StrojService{
 	@Override
 	public Iterable<Stroj> getAllStroj() {
 		return this.strojRepository.findAll();
+	}
+
+	@Override
+	public List<Stroj> getStrojeviPoProizvodu(long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

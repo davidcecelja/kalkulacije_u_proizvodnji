@@ -1,5 +1,7 @@
 package com.proizvodnja.kalkulacije.service;
 
+import java.util.List;
+
 import com.proizvodnja.kalkulacije.model.Materijal;
 
 public interface MaterijalService {
@@ -13,4 +15,6 @@ public interface MaterijalService {
 	void deleteMaterijal(long id);
 	
 	Iterable<Materijal> getAllMaterijal();
+
+	List<Materijal> getMaterijaliPoProizvodu(long id);
 }

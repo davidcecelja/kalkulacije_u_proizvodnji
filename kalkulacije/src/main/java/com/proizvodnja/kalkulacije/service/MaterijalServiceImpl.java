@@ -1,5 +1,6 @@
 package com.proizvodnja.kalkulacije.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,12 +55,17 @@ public class MaterijalServiceImpl implements MaterijalService{
 	@Override
 	public void deleteMaterijal(long id) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public Iterable<Materijal> getAllMaterijal() {
 		return this.materijalRepository.findAll();
+	}
+
+	@Override
+	public List<Materijal> getMaterijaliPoProizvodu(long id) {
+		
+		return null;
 	}
 
 }
