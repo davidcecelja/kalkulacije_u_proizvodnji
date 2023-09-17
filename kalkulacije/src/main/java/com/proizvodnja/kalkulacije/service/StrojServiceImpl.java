@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.proizvodnja.kalkulacije.exception.ResourceNotFoundException;
+import com.proizvodnja.kalkulacije.model.Materijal;
 import com.proizvodnja.kalkulacije.model.Stroj;
 import com.proizvodnja.kalkulacije.repository.StrojRepository;
 
@@ -68,5 +69,24 @@ public class StrojServiceImpl implements StrojService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public double racunanjeCijeneStroja() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/*@Override
+	public double racunanjeCijeneStroja() {
+		int vrijemeStroj = 2;
+		int radnikStroj = 2;
+		double cijenaStroj;
+		String sifraMaterijala = 
+		if(sifraMaterijala == "GP-1001") {
+		cijenaStroj = (cijenaRadaRadnika * radnikStroj) + (cijenaRadaStroja * vrijemeStroj);
+			
+		}
+		return cijenaStroj;
+	}*/
 
 }

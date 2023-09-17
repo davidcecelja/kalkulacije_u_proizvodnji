@@ -24,12 +24,11 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="sifrarniciDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:href="@{/sifrarnici}">Šifrarnici</a>
                     <div class="dropdown-menu" aria-labelledby="sifrarniciDropdown">
-        				<a class="dropdown-item" href="#">GP-1001</a>
-        				<a class="dropdown-item" href="#">PP-1001</a>
-        				<a class="dropdown-item" href="#">PP-1002</a>
-        				<a class="dropdown-item" href="#">GP-1002</a>
-        				<a class="dropdown-item" href="#">PP-1003</a>
-        				<a class="dropdown-item" href="#">PP-1004</a>
+        				<a class="dropdown-item" href="materijali.html">Materijali</a>
+        				<a class="dropdown-item" href="mjerne_jedinice.html">Mjerne jedinice</a>
+        				<a class="dropdown-item" href="strojevi.html">Strojevi</a>
+        				<a class="dropdown-item" href="tip_materijala.html">Tip materijala</a>
+        				<a class="dropdown-item" href="proizvodi">Proizvodi</a>       	
     				</div>                   
                 </li>
                 <li class="nav-item">
@@ -44,28 +43,22 @@
         <table class="table table-striped">
             <thead class="thead-light">
                 <tr>
-                    <th>Naziv predavanja</th>
-                    <th>Opis predavanja</th>
-                    <th>Početak predavanja</th>
-                    <th>Završetak predavanja</th>
-                    <th>Status predavanja</th>
-                    <th>Akcije</th>
+                    <th>Normativ</th>
+                    <th>Šifra</th>
+                    <th>Opis</th>
+                    <th>Stroj</th>
+                    <th>Mjerna jedinica</th>                                  
+                    <th>Valuta</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="predavanje : ${predavanja}">                   
-                    <td th:text="${predavanje.naziv_predavanja}"></td>
-                    <td th:text="${predavanje.opis_predavanja}"></td>
-                    <td th:text="${predavanje.pocetak_predavanja}"></td>
-                    <td th:text="${predavanje.zavrsetak_predavanja}"></td>
-                    <td th:text="${predavanje.status_predavanja}"></td>
-                    <td>                       
-                        <a th:if="${predavanje.status_predavanja == 'NOVO'}" 
-                        th:href="@{/uredi_predavanje/{id}(id=${predavanje.id})}" class="btn btn-primary">Uredi</a>               
-                        <a th:if="${predavanje.status_predavanja == 'NOVO'}"
-                        th:href="@{/brisi_predavanje/{id}(id=${predavanje.id})}" class="btn btn-danger" onclick="return confirm('Jeste li sigurni da želite obrisati predavanje?');">Izbriši</a>
-                        <a th:href="@{/prijave/{id}(id=${predavanje.id})}" class="btn btn-success">Prijave</a>
-                    </td>
+                <tr th:each="proizvod : ${proizvodi}">                   
+                    <td th:text="${proizvod.normativ}"></td>
+                    <td th:text="${proizvod.sifra}"></td>
+                    <td th:text="${proizvod.opis}"></td>
+                    <td th:text="${proizvod.stroj}"></td>
+                    <td th:text="${proizvod.mjernaJedinica}"></td>
+                    <td th:text="${proizvod.valuta}"></td>                                      
                 </tr>
             </tbody>    
         </table> 

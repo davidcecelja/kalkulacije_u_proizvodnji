@@ -17,4 +17,6 @@ public interface StrojService {
 	Iterable<Stroj> getAllStroj();
 
 	List<Stroj> getStrojeviPoProizvodu(long id);
+	
+	double racunanjeCijeneStroja();
 }

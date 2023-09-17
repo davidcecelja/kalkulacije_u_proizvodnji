@@ -5,7 +5,7 @@
     <title>Kalkulacije u proizvodnji</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style> 
-    	body {background-image: url("images/mev.jpg");}
+    	body {background-image: url("img/pozadina.jpg");}
     	.table tbody tr td {color: white;}
     </style>
 </head>
@@ -21,8 +21,15 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/kalkulacija}">Kalkulacija</a>
                 </li>                
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/sifrarnici}">Šifrarnici</a>                   
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="sifrarniciDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:href="@{/sifrarnici}">Šifrarnici</a>
+                    <div class="dropdown-menu" aria-labelledby="sifrarniciDropdown">
+        				<a class="dropdown-item" th:href="@{/materijali}">Materijali</a>
+        				<a class="dropdown-item" th:href="@{/mjerne_jedinice}">Mjerne jedinice</a>
+        				<a class="dropdown-item" th:href="@{/strojevi}">Strojevi</a>
+        				<a class="dropdown-item" th:href="@{/tip_materijala}">Tip materijala</a>
+        				<a class="dropdown-item" th:href="@{/proizvodi}">Proizvodi</a>       	
+    				</div>                   
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/administracija}">Administracija</a>                   
@@ -36,29 +43,22 @@
         <table class="table table-striped">
             <thead class="thead-light">
                 <tr>
-                    <th>Šifra materijala</th>
-                    <th>Opis materijala</th>
-                    <th>Mjerna jedinica</th>
-                    <th>Tip materijala</th>
-                    <th>Jedinična cijena</th>
+                    <th>Normativ</th>
+                    <th>Šifra</th>
+                    <th>Opis</th>
+                    <th>Stroj</th>
+                    <th>Mjerna jedinica</th>                                  
                     <th>Valuta</th>
-                    <th>Jedinična količina</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="predavanje : ${predavanja}">                   
-                    <td th:text="${predavanje.naziv_predavanja}"></td>
-                    <td th:text="${predavanje.opis_predavanja}"></td>
-                    <td th:text="${predavanje.pocetak_predavanja}"></td>
-                    <td th:text="${predavanje.zavrsetak_predavanja}"></td>
-                    <td th:text="${predavanje.status_predavanja}"></td>
-                    <td>                       
-                        <a th:if="${predavanje.status_predavanja == 'NOVO'}" 
-                        th:href="@{/uredi_predavanje/{id}(id=${predavanje.id})}" class="btn btn-primary">Uredi</a>               
-                        <a th:if="${predavanje.status_predavanja == 'NOVO'}"
-                        th:href="@{/brisi_predavanje/{id}(id=${predavanje.id})}" class="btn btn-danger" onclick="return confirm('Jeste li sigurni da želite obrisati predavanje?');">Izbriši</a>
-                        <a th:href="@{/prijave/{id}(id=${predavanje.id})}" class="btn btn-success">Prijave</a>
-                    </td>
+                <tr th:each="proizvod : ${proizvodi}">                   
+                    <td th:text="${proizvod.normativ}"></td>
+                    <td th:text="${proizvod.sifra}"></td>
+                    <td th:text="${proizvod.opis}"></td>
+                    <td th:text="${proizvod.stroj}"></td>
+                    <td th:text="${proizvod.mjernaJedinica}"></td>
+                    <td th:text="${proizvod.valuta}"></td>                                      
                 </tr>
             </tbody>    
         </table> 

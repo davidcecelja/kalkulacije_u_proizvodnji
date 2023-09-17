@@ -1,7 +1,6 @@
 package com.proizvodnja.kalkulacije.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,33 +11,33 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.proizvodnja.kalkulacije.model.Materijal;
-import com.proizvodnja.kalkulacije.service.MaterijalService;
+import com.proizvodnja.kalkulacije.model.Proizvod;
+import com.proizvodnja.kalkulacije.service.ProizvodService;
 
 @Controller
 public class ProizvodController {
 
 	@Autowired
-	private MaterijalService service;
+	private ProizvodService service;
 
-	@GetMapping("/materijali")
+	@GetMapping("/proizvodi")
 	public String viewHomePage(Model model) {
-		ArrayList<Materijal> popisMaterijala = (ArrayList<Materijal>) service.getAllMaterijal();
-		model.addAttribute("materijali", popisMaterijala);
-		return "materijali";
+		ArrayList<Proizvod> popisProizvoda = (ArrayList<Proizvod>) service.getAllProizvod();
+		model.addAttribute("proizvodi", popisProizvoda);
+		return "proizvodi";
 	}
 	
-	@GetMapping("/uredi_materijal/{id}")
-	public ModelAndView urediMaterijal(@PathVariable("id") long id) {
-		ModelAndView mav = new ModelAndView("uredi_materijal");
-		Materijal materijal = service.getMaterijal(id);
-		mav.addObject("materijal", materijal);
+	@GetMapping("/uredi_proizvod/{id}")
+	public ModelAndView urediProizvod(@PathVariable("id") long id) {
+		ModelAndView mav = new ModelAndView("uredi_proizvod");
+		Proizvod proizvod = service.getProizvod(id);
+		mav.addObject("proizvod", proizvod);
 		return mav;
 	}
 	
-	@PostMapping("/uredi_materijal")
-	public String spremiMaterijal(@ModelAttribute("materijal") Materijal materijal) {
-		service.updateMaterijal(materijal);
-		return "redirect:/materijali/";
+	@PostMapping("/uredi_proizvod")
+	public String spremiProizvod(@ModelAttribute("proizvod") Proizvod proizvod) {
+		service.updateProizvod(proizvod);
+		return "redirect:/proizvodi/";
 	}
 }
