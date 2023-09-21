@@ -30,10 +30,10 @@ public class Stroj {
 	private String valutaRadnik;
 	
 	@Column
-	private long cijenaRadaStroja;
+	private Long cijenaRadaStroja;
 	
 	@Column
-	private long cijenaRadaRadnika;
+	private Long cijenaRadaRadnika;
 	
 	@ManyToOne
 	@JoinColumn(name = "mjernaJedinicaId", referencedColumnName = "id")

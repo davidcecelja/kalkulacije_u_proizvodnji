@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.proizvodnja.kalkulacije.exception.ResourceNotFoundException;
-import com.proizvodnja.kalkulacije.model.Materijal;
 import com.proizvodnja.kalkulacije.model.Stroj;
 import com.proizvodnja.kalkulacije.repository.StrojRepository;
 

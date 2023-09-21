@@ -1,6 +1,7 @@
 package com.proizvodnja.kalkulacije.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,6 @@ public class UserController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String emailUser = auth.getName();
 		User trenutniUser = service.findByEmail(emailUser);
-		
 		model.addAttribute("user", trenutniUser);
 		return "pocetna_user";
 	}
