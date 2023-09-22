@@ -4,53 +4,56 @@
     <title>Kalkulacije u proizvodnji</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">   
-    <style>
-        /* Stilovi za registracijsku formu */
+    <style>      
         .registration-form {
-            border: 1px solid #ddd;
-            padding: 20px;
+            border: 1px solid #ddd; 
+            padding: 20px; 
             background-color: #fff;
-            margin-top: 20px; /* Dodajte odmak između login i registracijske forme */
         }
 
         .btn-registration {
-            background-color: #f0ad4e; /* Promijenite boju gumba za registraciju */
-            border-color: #f0ad4e;
-            color: #fff; /* Promijenite boju teksta na gumbu */
+            background-color: #00695c; 
+        	border-color: #00695c;
+        	color: white;
         }
-
-        /* Dodatni stilovi za ostale elemente registracijske forme ako je potrebno */
+		body {
+            background-color: #f5f5f5; 
+        }
+        .container {
+        	margin-top: 50px; 
+    	}
+        .btn-warning {
+        	background-color: #c3e6cb; 
+        	border-color: #c3e6cb;
+    	}
     </style>
 </head>
 <body>
     <form th:action="@{/pocetna-admin}" method="get">
-        <button class="btn btn-md btn-warning btn-block" type="Submit">Povratak na prijavu</button>
+        <button class="btn btn-md btn-warning" type="Submit">Povratak</button>
     </form>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-6 mx-auto">
                 <form autocomplete="off" action="#" th:action="@{/registracija}"
                     th:object="${user}" method="post" class="form-horizontal registration-form"
                     role="form">
-                    <h2>REGISTRACIJA</h2>
                     <div class="form-group">
-                        <div class="col-sm-9">
-                            <input type="text" th:field="*{email}" placeholder="Email" class="form-control" />
+                        <div class="col-md-12">
+                            <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-3" />
                             <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
                             <span th:if="${greska != null}" class="error-message" th:text="${greska}"></span> 
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-9">
-                            <input type="password" th:field="*{lozinka}"
-                                placeholder="Lozinka" class="form-control"/> 
-                            <label th:if="${#fields.hasErrors('lozinka')}" th:errors="*{lozinka}"
-                                class="validation-message"></label>
+                        <div class="col-md-12">
+                            <input type="password" th:field="*{lozinka}" placeholder="Lozinka" class="form-control mb-3"/> 
+                            <label th:if="${#fields.hasErrors('lozinka')}" th:errors="*{lozinka}" class="validation-message"></label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-9">
-                            <button type="submit" class="btn btn-registration btn-block">UNESI</button>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-lg btn-registration btn-block">REGISTRACIJA</button>
                         </div>
                     </div>
                     <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
@@ -58,6 +61,14 @@
             </div>
         </div>
     </div>
+    <footer class="text-center text fixed-bottom" style="background-color: grey;">
+  		<div class="container p-4">
+  			<a class="text-white">KALKULACIJE U PROIZVODNJI</a>
+  		</div> 
+  		<div class="text-center p-3" style="background-color: white;">
+   					 © 2023 Copyright
+  		</div>
+	</footer>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
