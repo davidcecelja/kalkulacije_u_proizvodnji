@@ -23,8 +23,8 @@ public class MaterijalController {
 
 	@GetMapping("/materijali")
 	public String viewHomePage(Model model) {
-		ArrayList<Materijal> popisMaterijala = (ArrayList<Materijal>) service.getAllMaterijal();
-		model.addAttribute("materijali", popisMaterijala);
+		ArrayList<Materijal> materijali = (ArrayList<Materijal>) service.getAllMaterijal();
+		model.addAttribute("materijali", materijali);
 		return "materijali";
 	}
 	

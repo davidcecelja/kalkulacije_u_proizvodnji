@@ -53,36 +53,7 @@
             </ul>
         </div>
     </nav>
-    <div class="container table-container mx-auto text-center">
-        <table class="table table-striped">
-            <thead class="thead-light">
-                <tr>
-                    <th>Šifra</th>
-                    <th>Opis</th>
-                    <th>Tip materijala</th>
-                    <th>Cijena</th>
-                    <th>Valuta</th>
-                    <th>Količina</th>                                  
-                    <th>Mjerna jedinica</th>
-                    <th>Akcija</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="materijal : ${materijali}">                   
-                    <td th:text="${materijal.sifra}"></td>
-                    <td th:text="${materijal.opis}"></td>
-                    <td th:text="${materijal.tipMaterijala}"></td>
-                    <td th:text="${materijal.jedinicnaCijena}"></td>
-                    <td th:text="${materijal.valuta}"></td>
-                    <td th:text="${materijal.kolicina}"></td>
-                    <td th:text="${materijal.mjernaJedinica}"></td>
-                    <td>
-                        <a th:href="@{/uredi_materijal/{id}(id=${materijal.id})}" class="btn btn-warning">Uredi</a>                        
-                    </td>                                      
-                </tr>
-            </tbody>    
-        </table>
-    </div> 
+    
     <footer class="text-center text fixed-bottom" style="background-color: #00695c;">
   		<div class="container p-4">
   			<a class="text-white">KALKULACIJE U PROIZVODNJI</a>

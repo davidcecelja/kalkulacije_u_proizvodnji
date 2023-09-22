@@ -31,7 +31,7 @@ public class TipMaterijala {
 		this.sifra = sifra;
 		this.opis = opis;
 	}
-
+	
 	public long getId() {
 		return id;
 	}
@@ -55,4 +55,11 @@ public class TipMaterijala {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
+
+	@Override
+	public String toString() {
+		return opis;
+	}
+	
+	
 }

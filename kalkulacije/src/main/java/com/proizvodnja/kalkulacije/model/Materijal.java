@@ -24,13 +24,13 @@ public class Materijal {
 	private String opis;
 	
 	@Column
-	private long jedinicnaCijena;
+	private Long jedinicnaCijena;
 	
 	@Column
 	private String valuta;
 	
 	@Column
-	private long kolicina;
+	private Long kolicina;
 	
 	@ManyToOne
 	@JoinColumn()
@@ -44,7 +44,7 @@ public class Materijal {
 		super();
 	}
 
-	public Materijal(long id, String sifra, String opis, long jedinicnaCijena, String valuta, long kolicina,
+	public Materijal(long id, String sifra, String opis, Long jedinicnaCijena, String valuta, Long kolicina,
 			TipMaterijala tipMaterijala, MjernaJedinica mjernaJedinica) {
 		super();
 		this.id = id;
@@ -81,11 +81,11 @@ public class Materijal {
 		this.opis = opis;
 	}
 
-	public long getJedinicnaCijena() {
+	public Long getJedinicnaCijena() {
 		return jedinicnaCijena;
 	}
 
-	public void setJedinicnaCijena(long jedinicnaCijena) {
+	public void setJedinicnaCijena(Long jedinicnaCijena) {
 		this.jedinicnaCijena = jedinicnaCijena;
 	}
 
@@ -97,11 +97,11 @@ public class Materijal {
 		this.valuta = valuta;
 	}
 
-	public long getKolicina() {
+	public Long getKolicina() {
 		return kolicina;
 	}
 
-	public void setKolicina(long kolicina) {
+	public void setKolicina(Long kolicina) {
 		this.kolicina = kolicina;
 	}
 
