@@ -6,7 +6,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style> 
     	body {background-color: #f0f5f3;}
-    	.table tbody tr td {color: white;}
+    	.table-container {
+        	background-color: white;
+        	text-align: center;
+        	padding: 20px;
+        	border: 1px solid #ccc;         	
+        	margin: 20px; 
+    	}
+    	.table-container table {
+        	width: 100%;
+        	border-collapse: collapse;
+        	border-spacing: 0; 
+    	}
     </style>
 </head>
 <body>
@@ -22,19 +33,19 @@
                     <a class="nav-link" th:href="@{/kalkulacija}">Kalkulacija</a>
                 </li>                
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/kalkulacija}">Materijali</a>
+                    <a class="nav-link" th:href="@{/materijali}">Materijali</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/kalkulacija}">Proizvodi</a>
+                    <a class="nav-link" th:href="@{/proizvodi}">Proizvodi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/kalkulacija}">Tip materijala</a>
+                    <a class="nav-link" th:href="@{/tip_materijala}">Tip materijala</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/kalkulacija}">Mjerna jedinica</a>
+                    <a class="nav-link" th:href="@{/mjerne_jedinice}">Mjerna jedinica</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/kalkulacija}">Stroj</a>
+                    <a class="nav-link" th:href="@{/strojevi}">Stroj</a>
                 </li>  
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/odjava}">Odjava</a>                   
@@ -42,28 +53,36 @@
             </ul>
         </div>
     </nav>
+    <div class="container table-container mx-auto text-center">
         <table class="table table-striped">
             <thead class="thead-light">
                 <tr>
-                    <th>Normativ</th>
                     <th>Šifra</th>
                     <th>Opis</th>
-                    <th>Stroj</th>
-                    <th>Mjerna jedinica</th>                                  
+                    <th>Tip materijala</th>
+                    <th>Cijena</th>
                     <th>Valuta</th>
+                    <th>Količina</th>                                  
+                    <th>Mjerna jedinica</th>
+                    <th>Akcija</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="proizvod : ${proizvodi}">                   
-                    <td th:text="${proizvod.normativ}"></td>
-                    <td th:text="${proizvod.sifra}"></td>
-                    <td th:text="${proizvod.opis}"></td>
-                    <td th:text="${proizvod.stroj}"></td>
-                    <td th:text="${proizvod.mjernaJedinica}"></td>
-                    <td th:text="${proizvod.valuta}"></td>                                      
+                <tr th:each="materijal : ${materijali}">                   
+                    <td th:text="${materijal.sifra}"></td>
+                    <td th:text="${materijal.opis}"></td>
+                    <td th:text="${materijal.tipMaterijala}"></td>
+                    <td th:text="${materijal.jedinicnaCijena}"></td>
+                    <td th:text="${materijal.valuta}"></td>
+                    <td th:text="${materijal.kolicina}"></td>
+                    <td th:text="${materijal.mjernaJedinica}"></td>
+                    <td>
+                        <a th:href="@{/uredi_materijal/{id}(id=${materijal.id})}" class="btn btn-warning">Uredi</a>                        
+                    </td>                                      
                 </tr>
             </tbody>    
-        </table> 
+        </table>
+    </div> 
     <footer class="text-center text fixed-bottom" style="background-color: #00695c;">
   		<div class="container p-4">
   			<a class="text-white">KALKULACIJE U PROIZVODNJI</a>

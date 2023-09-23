@@ -27,7 +27,7 @@ public class Proizvod {
 	private String opis;
 	
 	@Column
-	private int kolicina;
+	private Integer kolicina;
 	
 	@ManyToOne
 	@JoinColumn()
@@ -42,7 +42,7 @@ public class Proizvod {
 		super();
 	}
 
-	public Proizvod(long id, String normativ, String sifra, String opis, int kolicina, MjernaJedinica mjernaJedinica,
+	public Proizvod(long id, String normativ, String sifra, String opis, Integer kolicina, MjernaJedinica mjernaJedinica,
 			Stroj stroj) {
 		super();
 		this.id = id;
@@ -86,11 +86,11 @@ public class Proizvod {
 		this.opis = opis;
 	}
 
-	public int getKolicina() {
+	public Integer getKolicina() {
 		return kolicina;
 	}
 
-	public void setKolicina(int kolicina) {
+	public void setKolicina(Integer kolicina) {
 		this.kolicina = kolicina;
 	}
 

@@ -57,25 +57,27 @@
         <table class="table table-striped">
             <thead class="thead-light">
                 <tr>
-                    <th>Normativ</th>
                     <th>Šifra</th>
                     <th>Opis</th>
-                    <th>Količina</th>
+                    <th>Tip materijala</th>
+                    <th>Cijena</th>
+                    <th>Valuta</th>
+                    <th>Količina</th>                                  
                     <th>Mjerna jedinica</th>
-                    <th>Stroj</th>                                  
                     <th>Akcija</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="proizvod : ${proizvodi}">                   
-                    <td th:text="${proizvod.normativ}"></td>
-                    <td th:text="${proizvod.sifra}"></td>
-                    <td th:text="${proizvod.opis}"></td>
-                    <td th:text="${proizvod.kolicina}"></td>
-                    <td th:text="${proizvod.mjernaJedinica}"></td>
-                    <td th:text="${proizvod.stroj}"></td>
+                <tr th:each="materijal : ${materijali}">                   
+                    <td th:text="${materijal.sifra}"></td>
+                    <td th:text="${materijal.opis}"></td>
+                    <td th:text="${materijal.tipMaterijala}"></td>
+                    <td th:text="${materijal.jedinicnaCijena}"></td>
+                    <td th:text="${materijal.valuta}"></td>
+                    <td th:text="${materijal.kolicina}"></td>
+                    <td th:text="${materijal.mjernaJedinica}"></td>
                     <td>
-                        <a th:href="@{/uredi_proizvod/{id}(id=${proizvod.id})}" class="btn btn-warning">Uredi</a>                        
+                        <a th:href="@{/uredi_materijal/{id}(id=${materijal.id})}" class="btn btn-warning">Uredi</a>                        
                     </td>                                      
                 </tr>
             </tbody>    
