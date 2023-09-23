@@ -44,7 +44,7 @@ public class Stroj {
 	}
 
 	public Stroj(long id, String sifraStroja, String opis, String valutaStroj, String valutaRadnik,
-			long cijenaRadaStroja, long cijenaRadaRadnika, MjernaJedinica mjernaJedinica) {
+			Long cijenaRadaStroja, Long cijenaRadaRadnika, MjernaJedinica mjernaJedinica) {
 		super();
 		this.id = id;
 		this.sifraStroja = sifraStroja;
@@ -96,19 +96,19 @@ public class Stroj {
 		this.valutaRadnik = valutaRadnik;
 	}
 
-	public long getCijenaRadaStroja() {
+	public Long getCijenaRadaStroja() {
 		return cijenaRadaStroja;
 	}
 
-	public void setCijenaRadaStroja(long cijenaRadaStroja) {
+	public void setCijenaRadaStroja(Long cijenaRadaStroja) {
 		this.cijenaRadaStroja = cijenaRadaStroja;
 	}
 
-	public long getCijenaRadaRadnika() {
+	public Long getCijenaRadaRadnika() {
 		return cijenaRadaRadnika;
 	}
 
-	public void setCijenaRadaRadnika(long cijenaRadaRadnika) {
+	public void setCijenaRadaRadnika(Long cijenaRadaRadnika) {
 		this.cijenaRadaRadnika = cijenaRadaRadnika;
 	}
 
@@ -119,5 +119,10 @@ public class Stroj {
 	public void setMjernaJedinica(MjernaJedinica mjernaJedinica) {
 		this.mjernaJedinica = mjernaJedinica;
 	}
+
+	@Override
+	public String toString() {
+		return opis;
+	}	
 }
 
