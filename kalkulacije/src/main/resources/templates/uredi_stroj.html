@@ -59,26 +59,28 @@
                 <tr>
                     <th>Šifra</th>
                     <th>Opis</th>
-                    <th>Tip materijala</th>
-                    <th>Cijena</th>
+                    <th>Cijena stroja</th>
                     <th>Valuta</th>
-                    <th>Količina</th>                                  
+                    <th>Cijena radnika</th>
+                    <th>Valuta</th>                                  
                     <th>Mjerna jedinica</th>
                     <th>Akcija</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="materijal : ${materijali}">                   
-                    <td th:text="${materijal.sifra}"></td>
-                    <td th:text="${materijal.opis}"></td>
-                    <td th:text="${materijal.tipMaterijala}"></td>
-                    <td th:text="${materijal.jedinicnaCijena}"></td>
-                    <td th:text="${materijal.valuta}"></td>
-                    <td th:text="${materijal.kolicina}"></td>
-                    <td th:text="${materijal.mjernaJedinica}"></td>
+                <tr th:each="stroj : ${strojevi}">                   
                     <td>
-                        <a th:href="@{/uredi_materijal/{id}(id=${materijal.id})}" class="btn btn-warning">Uredi</a>                        
-                    </td>                                      
+            			<span th:unless="${stroj.editMode}" th:text="${stroj.stroj.cijenaRadaStroja}"></span>
+            			<input th:if="${stroj.editMode}" type="text" th:field="*{stroj.cijenaRadaStroja}" />
+        			</td>
+        			<td>
+            			<span th:unless="${stroj.editMode}" th:text="${stroj.stroj.cijenaRadaRadnika}"></span>
+            			<input th:if="${stroj.editMode}" type="text" th:field="*{stroj.cijenaRadaRadnika}" />
+        			</td>      			
+        			<td>
+            			<a th:unless="${stroj.editMode}" th:href="@{/uredi_stroj/{id}(id=${stroj.id})}" class="btn btn-warning">Uredi</a>
+            			<button th:if="${stroj.editMode}" type="submit" class="btn btn-success">Spremi</button>
+        			</td>                                   
                 </tr>
             </tbody>    
         </table>
