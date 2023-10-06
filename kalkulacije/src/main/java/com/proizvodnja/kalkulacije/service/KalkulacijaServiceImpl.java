@@ -35,6 +35,30 @@ public class KalkulacijaServiceImpl implements KalkulacijaService{
 		ukupnaCijena += trosakRadaStroja + trosakRadaRadnika;
 		
 		return ukupnaCijena;	
+	} 
+	
+	public double izracunajCijenuProizvoda(Proizvod proizvod, double kolicina, double cijenaRadaStroja, double cijenaRadaRadnika) {
+		
+		double ukupnaCijena = 0.0;
+		
+		List<Normativ> normativi = proizvod.getMaterijali(); // ali koji materijali? oni koji imaju isti noramtiv kao i glavni proizvod i to String normativ;
+		
+		for(Normativ normativ : normativi) {
+			Materijal materijal = normativ.getMaterijal();
+			double kolicinaNormativa = normativ.getKolicina();
+			double jedinicnaCijena = materijal.getJedinicnaCijena();
+			
+			double cijenaMaterijala = jedinicnaCijena * kolicinaNormativa * kolicina;
+			
+			ukupnaCijena += cijenaMaterijala;			
+		}
+		
+		double trosakRadaStroja = cijenaRadaStroja * kolicina;
+		double trosakRadaRadnika = cijenaRadaRadnika * kolicina;
+		
+		ukupnaCijena += trosakRadaStroja + trosakRadaRadnika;
+		
+		return ukupnaCijena;	
 	}      
 }  
 
