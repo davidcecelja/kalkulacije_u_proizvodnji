@@ -33,7 +33,7 @@ public class Proizvod {
 	private Integer kolicina;
 	
 	@ManyToOne
-	@JoinColumn()
+	@JoinColumn(name = "mjernaJedinicaId", referencedColumnName = "id")
 	private MjernaJedinica mjernaJedinica;
 	
 	@ManyToOne
@@ -42,13 +42,13 @@ public class Proizvod {
 	
 	@OneToMany(mappedBy = "proizvod")
 	private List<Normativ> materijali;
-	
+
 	public Proizvod() {
 		super();
 	}
 
-	public Proizvod(long id, String normativ, String sifra, String opis, Integer kolicina, MjernaJedinica mjernaJedinica,
-			Stroj stroj) {
+	public Proizvod(long id, String normativ, String sifra, String opis, Integer kolicina,
+			MjernaJedinica mjernaJedinica, Stroj stroj, List<Normativ> materijali) {
 		super();
 		this.id = id;
 		this.normativ = normativ;
@@ -57,6 +57,7 @@ public class Proizvod {
 		this.kolicina = kolicina;
 		this.mjernaJedinica = mjernaJedinica;
 		this.stroj = stroj;
+		this.materijali = materijali;
 	}
 
 	public long getId() {
@@ -114,6 +115,16 @@ public class Proizvod {
 	public void setStroj(Stroj stroj) {
 		this.stroj = stroj;
 	}
+
+	public List<Normativ> getMaterijali() {
+		return materijali;
+	}
+
+	public void setMaterijali(List<Normativ> materijali) {
+		this.materijali = materijali;
+	}
+	
+	
 }
 
 

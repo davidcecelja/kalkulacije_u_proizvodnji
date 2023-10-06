@@ -8,24 +8,29 @@ import jakarta.persistence.ManyToOne;
 public class Normativ {
 
 	@ManyToOne
-    @JoinColumn(name = "proizvod_id")
+    @JoinColumn
 	private Proizvod proizvod;
 	
 	@ManyToOne
-    @JoinColumn(name = "materijal_id")
+    @JoinColumn
 	private Materijal materijal;
 	
 	private double kolicina;
+	
+	@ManyToOne
+	@JoinColumn(name = "mjernaJedinicaId", referencedColumnName = "id")
+	private MjernaJedinica mjernaJedinica;
 
 	public Normativ() {
 		super();
 	}
 
-	public Normativ(Proizvod proizvod, Materijal materijal, double kolicina) {
+	public Normativ(Proizvod proizvod, Materijal materijal, double kolicina, MjernaJedinica mjernaJedinica) {
 		super();
 		this.proizvod = proizvod;
 		this.materijal = materijal;
 		this.kolicina = kolicina;
+		this.mjernaJedinica = mjernaJedinica;
 	}
 
 	public Proizvod getProizvod() {
@@ -51,6 +56,12 @@ public class Normativ {
 	public void setKolicina(double kolicina) {
 		this.kolicina = kolicina;
 	}
-	
-	
+
+	public MjernaJedinica getMjernaJedinica() {
+		return mjernaJedinica;
+	}
+
+	public void setMjernaJedinica(MjernaJedinica mjernaJedinica) {
+		this.mjernaJedinica = mjernaJedinica;
+	}
 }
